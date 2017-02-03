@@ -68,7 +68,6 @@ Koko.prototype.startServer = function (callback) {
     console.log('php\t: %s'.info, this.usePHP ? 'on' : 'off');
     console.log('md\t: %s'.info, this.useMarkdown ? 'on' : 'off');
 
-    app.configure(function(){
         app.use(express.bodyParser());
 
         if (this.usePHP) {
@@ -111,7 +110,6 @@ Koko.prototype.startServer = function (callback) {
             }
             proxy.proxyRequest(req, res);
         });
-    }.bind(this));
 
     if (this.usePHP) {
         app.all(/.+\.php$/, phpExpress.router);
