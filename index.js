@@ -56,7 +56,8 @@ Koko.prototype.start = function () {
 Koko.prototype.startServer = function (callback) {
     var proxyURL = this.proxyURL;
     var proxy;
-
+    var encode = this.encode;
+    
     var app  = express();
 
     if (proxyURL) {
@@ -98,7 +99,7 @@ Koko.prototype.startServer = function (callback) {
             }.bind(this));
         }
         console.log('[open %s]'.info, `text/plain;charset=${this.encode}`);
-        app.use(res.set('Content-Type', `text/plain;charset=${this.encode}`));
+        app.use(function (req, res, next){res.set('Content-Type', `text/plain;charset=${encode}`)});
         app.use(express.static(this.root));
         app.use(express.directory(this.root));
 
