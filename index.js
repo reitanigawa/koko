@@ -98,9 +98,10 @@ Koko.prototype.startServer = function (callback) {
                 this.handleHtmlWithCustomHandler(req, res);
             }.bind(this));
         }
-        console.log('[open %s]'.info, `text/plain;charset=${this.encode}`);
-        app.use(function (req, res, next){res.set('Content-Type', `text/plain;charset=${encode}`)});
-        app.use(express.static(this.root));
+        app.use(express.static(this.root,{setHeaders: function (res, path, stat) {
+            console.log('[open %s]'.info, `text/plain;charset=${encode}`);
+            res.set('Content-Type', `text/plain;charset=${encode}`)
+          });
         app.use(express.directory(this.root));
 
         app.use(function (req, res, next) {
