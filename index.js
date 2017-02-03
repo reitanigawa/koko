@@ -98,14 +98,12 @@ Koko.prototype.startServer = function (callback) {
             }.bind(this));
         }
         console.log('[open %s]'.info, `text/plain;charset=${this.encode}`);
-
+        app.use(res.set('Content-Type', `text/plain;charset=${this.encode}`));
         app.use(express.static(this.root));
         app.use(express.directory(this.root));
 
         app.use(function (req, res, next) {
             
-            console.log('tuuka\t: %s'.info, 'off');
-            res.set('Content-Type', `text/plain;charset=${this.encode}`);
             if (!proxy) {
                 return next();
             }
