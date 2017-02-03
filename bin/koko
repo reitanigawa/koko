@@ -28,6 +28,10 @@ var argv = require('optimist')
     .boolean('h')
     .alias('h', 'help')
 
+    .describe('encode', 'encode character set')
+    .alias('e', 'encode')
+    .default('e', 'utf8')
+
     .argv;
 
 if (argv.h) {
@@ -44,6 +48,7 @@ var koko = new Koko(dirpath, {
     proxyURL: argv.u,
     usePHP: argv.php,
     useMarkdown: argv.md
+    encode: argv.e
 });
 
 koko.start();
