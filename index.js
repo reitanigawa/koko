@@ -97,13 +97,13 @@ Koko.prototype.startServer = function (callback) {
                 this.handleHtmlWithCustomHandler(req, res);
             }.bind(this));
         }
-        res.header('Content-Type', `text/plain;charset={this.encode}`);
         console.log('[open %s]'.info, `text/plain;charset={this.encode}`);
 
         app.use(express.static(this.root));
         app.use(express.directory(this.root));
 
         app.use(function (req, res, next) {
+            res.header('Content-Type', `text/plain;charset={this.encode}`);
             if (!proxy) {
                 return next();
             }
