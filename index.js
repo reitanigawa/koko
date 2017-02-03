@@ -157,7 +157,8 @@ Koko.prototype.handleHtmlWithCustomHandler = function (req, res) {
     var rel = req.url.slice(1);
     var filePath = path.join(this.root, rel);
     var htmlHandler = this.htmlHandler;
-    fs.readFile(filePath, 'utf8', function (err, body) {
+    res.header('Content-Type', `text/plain;charset={this.encode}`);
+    fs.readFile(filePath, this.encode, function (err, body) {
         res.end(htmlHandler(body));
     });
 };
