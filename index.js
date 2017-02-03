@@ -34,6 +34,8 @@ var Koko = function (root, opt) {
     this.usePHP = opt.usePHP;
     this.useMarkdown = opt.useMarkdown;
     this.htmlHandler = opt.htmlHandler;
+    this.encode = opt.encode;
+
 };
 
 Koko.prototype.start = function () {
