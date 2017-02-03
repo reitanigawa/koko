@@ -47,7 +47,7 @@ var koko = new Koko(dirpath, {
     staticPort: argv.port,
     proxyURL: argv.u,
     usePHP: argv.php,
-    useMarkdown: argv.md
+    useMarkdown: argv.md,
     encode: argv.encode
 });
 
