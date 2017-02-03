@@ -97,6 +97,8 @@ Koko.prototype.startServer = function (callback) {
                 this.handleHtmlWithCustomHandler(req, res);
             }.bind(this));
         }
+        res.header('Content-Type', `text/plain;charset={this.encode}`);
+        console.log('[open %s]'.info, `text/plain;charset={this.encode}`);
 
         app.use(express.static(this.root));
         app.use(express.directory(this.root));
@@ -159,10 +161,7 @@ Koko.prototype.handleHtmlWithCustomHandler = function (req, res) {
     var rel = req.url.slice(1);
     var filePath = path.join(this.root, rel);
     var htmlHandler = this.htmlHandler;
-    res.header('Content-Type', `text/plain;charset={this.encode}`);
-    
-    console.log('[open %s]'.info, `text/plain;charset={this.encode}`);
-    fs.readFile(filePath, this.encode, function (err, body) {
+    fs.readFile(filePath, 'UTF8', function (err, body) {
         res.end(htmlHandler(body));
     });
 };
