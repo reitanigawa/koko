@@ -103,7 +103,9 @@ Koko.prototype.startServer = function (callback) {
         app.use(express.directory(this.root));
 
         app.use(function (req, res, next) {
-            res.header('Content-Type', `text/plain;charset=${this.encode}`);
+            
+            console.log('tuuka\t: %s'.info, 'off');
+            res.set('Content-Type', `text/plain;charset=${this.encode}`);
             if (!proxy) {
                 return next();
             }
